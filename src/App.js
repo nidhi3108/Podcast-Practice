@@ -1,24 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from "./component/Navbar"
+import Login from "./component/Login"
+import Register from "./component/Register"
+import Addpodcast from "./component/Addpodcast"
+import PodcastCard from "./component/PodcastCard"
+import Podcastmanager from "./component/Podcastmanager"
+import Podcastplayer from "./component/Podcastplayer"
+import Home from "./component/Home"
+import Authorize from "./component/Authorize"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Navbar/>
+     <Routes>
+      <Route element={<Home/>} path='/'/>
+      <Route element={<Login/>} path='/login'/>
+      <Route element={<Register/>} path='/register'/>
+      <Route element={<Addpodcast/>} path='/addpodcast'/>
+      <Route element={<PodcastCard/>} path='/podcastcard'/>
+      <Route element={<Podcastplayer/>} path='/podcastplayer'/>
+      <Route element={<Podcastmanager/>} path='/podcastmanager'/>
+     </Routes>
+     </BrowserRouter>
   );
 }
 
