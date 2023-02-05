@@ -10,6 +10,7 @@ import Podcastmanager from "./component/Podcastmanager"
 import Podcastplayer from "./component/Podcastplayer"
 import Home from "./component/Home"
 import Authorize from "./component/Authorize"
+import ReduceCode from "./component/ReduceCode"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route element={<PodcastCard/>} path='/podcastcard'/>
       <Route element={<Podcastplayer/>} path='/podcastplayer'/>
       <Route element={<Podcastmanager/>} path='/podcastmanager'/>
+      <Route element={<ReduceCode/>} path='/reducecode'/>
      </Routes>
      </BrowserRouter>
   );

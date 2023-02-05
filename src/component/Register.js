@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import {React} from 'react'
-import { json, NavLink } from 'react-router-dom'
+import {  NavLink } from 'react-router-dom'
 
 const Register = () => {
 
@@ -10,10 +10,10 @@ const Register = () => {
         console.log(formdata);
 
         const response = await fetch("http://localhost:5000/user/register",{
-          method:'POST',
+          method:'post',
           body: JSON.stringify(formdata),
           headers:{
-            'Contnet-Type':'application/json'
+            'Content-Type':'application/json'
           }
         })
 

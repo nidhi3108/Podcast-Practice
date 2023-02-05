@@ -1,14 +1,28 @@
 import { Formik } from 'formik'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 
 const Login = () => {
-
-    const loginSubmit = (formdata)=>{
+     const navigate = useNavigate();
+    const loginSubmit =async (formdata)=>{
        console.log("data come");
        console.log(formdata);
-    }
 
+       const response=  await fetch("http://localhost:5000/user/login",{
+        method:"post",
+        body:JSON.stringify(formdata),
+        headers:{
+          'Content-Type':'application/json',
+        }
+       })
+       if(response.status===200)
+       {
+        navigate('../addpodcast')
+        console.log(response.status);
+        const data= await response.json();
+        sessionStorage.setItem('user',JSON.stringify(data))
+       }
+   }
   return (
     <>
 <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>

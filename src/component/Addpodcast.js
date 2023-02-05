@@ -8,7 +8,7 @@ const Addpodcast = () => {
              console.log(formdata);
   }
 
-
+  
   return (
     <>
       <div className="row mt-5  bg-primary" style={{ marginLeft:"15%",marginRight:"15%"}}>
