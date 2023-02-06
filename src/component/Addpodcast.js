@@ -1,13 +1,64 @@
-import { Formik } from "formik";
-import React from "react";
+import { Form, Formik } from "formik";
+import React, { useState } from "react";
 import "./Addpodcast.css";
 
 const Addpodcast = () => {
 
-  const addPodcastSubmit=(formdata)=>{
+  const [selFile, setSelFile] = useState("")
+  const [selThumbnail, setSelThumbnail] = useState("")
+  const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')))
+
+  const addPodcastSubmit=async (formdata)=>{
              console.log(formdata);
+
+            const response=await fetch("http://localhost:5000/podcast/add",{
+              method: 'POST',
+              body: JSON.stringify(formdata),
+              headers:{
+                "Content-Type": "application/json",
+              },
+            });
+            console.log(response);
   }
 
+  const uploadFile=(e)=>{
+    const file=e.target.files[0];
+    setSelFile(file.name)
+     const fd=new FormData();
+     console.log(fd);
+     fd.append("myFile",file);
+     console.log(fd);
+     fetch("http://localhost:5000/util/uploadFile",{
+      method:'POST',
+      body:fd,
+     })
+     .then((res) => {
+      if (res.status === 200) {
+       console.log(res);
+      }
+    })
+  .catch((err)=>{
+    console.log(err);
+  })
+  }
+
+
+  const uploadThumbnail=(e)=>{
+    const file = e.target.files[0];
+    setSelThumbnail(file.name);
+    const fd = new FormData();
+    fd.append("myuploadfile", file);
+    fetch("http://localhost:5000/util/uploadThumbnail", {
+      method: "POST",
+      body: fd,
+    }).then((result) => {
+      if (result.status === 200) {
+        console.log(result);
+      }
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
   
   return (
     <>
@@ -47,7 +98,7 @@ const Addpodcast = () => {
                 <h4 style={{ color: "#495057" }}>Podcast Details</h4>
               </div>
               {/* ,createdBy:currentUser._id,createdAt:new Date() */}
-              <Formik  initialValues={{title:"",description:""}}
+              <Formik  initialValues={{title:"",description:"",createdBy:currentUser._id,createdAt: new Date()}}
               onSubmit={addPodcastSubmit}>
 
                 {({values,handleChange,handleSubmit})=>{
@@ -90,7 +141,7 @@ const Addpodcast = () => {
                             type="file"
                             id="form9Example3"
                             
-                              onChange={handleChange}
+                              onChange={uploadFile}
                             className="form-control input-custom"
                           />
                           <label className="form-label" htmlFor="form9Example3">
@@ -102,7 +153,7 @@ const Addpodcast = () => {
                         <div className="">
                           <input
                             type="file"
-                            onChange={handleChange}
+                            onChange={uploadThumbnail}
                             id="form9Example4"
                             className="form-control input-custom"
                           />
