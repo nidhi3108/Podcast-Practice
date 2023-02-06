@@ -100,7 +100,7 @@ const Login = () => {
                             </NavLink>
                             <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                               Don't have an account?{" "}
-                              <NavLink to="#!" style={{ color: "#393f81" }}>
+                              <NavLink to="/register" style={{ color: "#393f81" }}>
                                 Register here
                               </NavLink>
                             </p>

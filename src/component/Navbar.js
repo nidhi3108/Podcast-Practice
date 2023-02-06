@@ -65,7 +65,7 @@ const Navbar = () => {
           </button>
           <NavLink
             className="btn btn-dark px-3"
-            href="https://github.com/nidhi3108"
+            to="https://github.com/nidhi3108"
             role="button"
           >
             <i className="fab fa-github" />

@@ -20,8 +20,8 @@ function App() {
       <Route element={<Home/>} path='/'/>
       <Route element={<Login/>} path='/login'/>
       <Route element={<Register/>} path='/register'/>
-      <Route element={<Addpodcast/>} path='/addpodcast'/>
-      <Route element={<PodcastCard/>} path='/podcastcard'/>
+      <Route element={<Authorize><Addpodcast/></Authorize>} path='/addpodcast'/>
+      <Route element={<Authorize><PodcastCard/></Authorize>} path='/podcastcard'/>
       <Route element={<Podcastplayer/>} path='/podcastplayer'/>
       <Route element={<Podcastmanager/>} path='/podcastmanager'/>
       <Route element={<ReduceCode/>} path='/reducecode'/>
